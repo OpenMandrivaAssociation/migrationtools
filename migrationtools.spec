@@ -57,6 +57,7 @@ cp %{SOURCE3} .
 %build
 
 perl -pi -e 's,%{_datadir}/openldap/migration,%{_datadir}/%{name},g' *.pl *.sh *.ph
+perl -pi -e "s,'migrate_common\.ph','%{_datadir}/%{name}/migrate_common.ph',g" *.pl *.sh *.ph
 
 %install
 rm -Rf %{buildroot}
