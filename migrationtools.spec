@@ -2,7 +2,7 @@
 
 Name:		migrationtools
 Version:	45
-Release:	1mdk
+Release:	%mkrel 2
 License:	BSD-like
 URL:		http://www.padl.com/OSS/MigrationTools.html
 Summary:	Tools for migrating local/NIS account information to LDAP
