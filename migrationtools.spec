@@ -1,14 +1,15 @@
 %define real_name MigrationTools
+%define name migrationtools
+%define version 47
+%define release %mkrel 1
 
-Name:		migrationtools
-Version:	45
-Release:	%mkrel 2
+Name:		%{name}
+Version:	%{version}
+Release:	%{release}
 License:	BSD-like
 URL:		http://www.padl.com/OSS/MigrationTools.html
 Summary:	Tools for migrating local/NIS account information to LDAP
 Group:		System/Configuration/Other
-Obsoletes:	openldap-migration <= 2.3.4
-Provides:	openldap-migration = %{version}
 Provides:	%{real_name} = %{version}-%{release}
 Requires:	openldap-clients
 Source:		http://www.padl.com/download/%{real_name}-%{version}.tar.bz2
@@ -20,8 +21,6 @@ Patch42:        MigrationTools-27-simple.patch
 Patch43:        MigrationTools-26-suffix.patch
 Patch44:        MigrationTools-24-schema.patch
 Patch45:        MigrationTools-45-i18n.patch
-Patch48:        MigrationTools-45-structural.patch
-Patch54: 	MigrationTools-40-preserveldif.patch
 Buildarch:	noarch
 Buildroot:	%{_tmppath}/%{name}-%{version}-root
 
@@ -50,13 +49,10 @@ LDAP_BINDCRED	The password to bind to the LDAP server with, for online
 %patch42 -p1 -b .simple
 %patch43 -p1 -b .suffix
 %patch45 -p2 -b .i18n
-%patch48 -p2 -b .account
-%patch54 -p1 -b .preserve
 cp %{SOURCE3} .
 
 %build
 
-perl -pi -e 's,%{_datadir}/openldap/migration,%{_datadir}/%{name},g' *.pl *.sh *.ph
 perl -pi -e "s,'migrate_common\.ph','%{_datadir}/%{name}/migrate_common.ph',g" *.pl *.sh *.ph
 
 %install
