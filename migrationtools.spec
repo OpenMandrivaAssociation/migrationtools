@@ -1,7 +1,7 @@
 %define real_name MigrationTools
 %define name migrationtools
 %define version 47
-%define release %mkrel 1
+%define release %mkrel 2
 
 Name:		%{name}
 Version:	%{version}
@@ -21,6 +21,8 @@ Patch42:        MigrationTools-27-simple.patch
 Patch43:        MigrationTools-26-suffix.patch
 Patch44:        MigrationTools-24-schema.patch
 Patch45:        MigrationTools-45-i18n.patch
+# http://bugzilla.padl.com/show_bug.cgi?id=236
+Patch46:        MigrationTools-47-dc.patch
 Buildarch:	noarch
 Buildroot:	%{_tmppath}/%{name}-%{version}-root
 
@@ -49,6 +51,7 @@ LDAP_BINDCRED	The password to bind to the LDAP server with, for online
 %patch42 -p1 -b .simple
 %patch43 -p1 -b .suffix
 %patch45 -p2 -b .i18n
+%patch46 -p1 -b .dc
 cp %{SOURCE3} .
 
 %build
