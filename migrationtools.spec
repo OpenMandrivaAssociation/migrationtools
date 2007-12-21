@@ -24,6 +24,7 @@ Patch45:        MigrationTools-45-i18n.patch
 # http://bugzilla.padl.com/show_bug.cgi?id=236
 Patch46:        MigrationTools-47-dc.patch
 Buildarch:	noarch
+Buildroot:	%{_tmppath}/%{name}-%{version}-root
 
 %description
 The MigrationTools are a set of Perl scripts for migrating users, groups,
