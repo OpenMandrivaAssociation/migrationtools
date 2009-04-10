@@ -15,7 +15,7 @@ Requires:	openldap-clients
 Source:		http://www.padl.com/download/%{real_name}-%{version}.tar.bz2
 Source3:        migration-tools.txt
 Source4:        migrate_automount.pl
-Patch40:        MigrationTools-34-instdir.patch
+Patch40:        MigrationTools-47-instdir.patch
 Patch41:        MigrationTools-36-mktemp.patch
 Patch42:        MigrationTools-27-simple.patch
 Patch43:        MigrationTools-26-suffix.patch
