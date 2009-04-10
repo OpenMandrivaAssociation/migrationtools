@@ -17,7 +17,7 @@ Source3:        migration-tools.txt
 Source4:        migrate_automount.pl
 Patch40:        MigrationTools-47-instdir.patch
 Patch41:        MigrationTools-36-mktemp.patch
-Patch42:        MigrationTools-27-simple.patch
+Patch42:        MigrationTools-47-simple.patch
 Patch43:        MigrationTools-26-suffix.patch
 Patch44:        MigrationTools-24-schema.patch
 Patch45:        MigrationTools-45-i18n.patch
