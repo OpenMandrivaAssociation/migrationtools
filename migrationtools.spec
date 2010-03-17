@@ -1,7 +1,7 @@
 %define real_name MigrationTools
 %define name migrationtools
 %define version 47
-%define release %mkrel 5
+%define release %mkrel 6
 
 Name:		%{name}
 Version:	%{version}
