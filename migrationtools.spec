@@ -1,7 +1,7 @@
 %define real_name MigrationTools
 %define name migrationtools
 %define version 47
-%define release %mkrel 8
+%define release %mkrel 10
 
 Name:		%{name}
 Version:	%{version}
@@ -73,4 +73,61 @@ rm -Rf %{buildroot}
 %defattr(-,root,root)
 %{_datadir}/%{name}
 %doc README migration-tools.txt
+
+
+
+%changelog
+* Wed May 04 2011 Oden Eriksson <oeriksson@mandriva.com> 47-8mdv2011.0
++ Revision: 666424
+- mass rebuild
+
+* Fri Dec 03 2010 Oden Eriksson <oeriksson@mandriva.com> 47-7mdv2011.0
++ Revision: 606642
+- rebuild
+
+* Wed Mar 17 2010 Oden Eriksson <oeriksson@mandriva.com> 47-6mdv2010.1
++ Revision: 523309
+- rebuilt for 2010.1
+
+* Thu Sep 03 2009 Christophe Fergeau <cfergeau@mandriva.com> 47-5mdv2010.0
++ Revision: 426111
+- rebuild
+
+* Fri Apr 10 2009 Funda Wang <fwang@mandriva.org> 47-4mdv2009.1
++ Revision: 365829
+- rediff suffix patch
+- rediff simple patch
+- rediff instdir patch
+
+  + Antoine Ginies <aginies@mandriva.com>
+    - rebuild
+
+* Tue Jun 17 2008 Thierry Vignaud <tv@mandriva.org> 47-3mdv2009.0
++ Revision: 223259
+- rebuild
+- kill re-definition of %%buildroot on Pixel's request
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+* Wed Nov 28 2007 Andreas Hasenack <andreas@mandriva.com> 47-2mdv2008.1
++ Revision: 113685
+- added patch for PADL bugzilla ticket #236, fixing migrate_base
+  for when one has a top element with more than two components
+  (like dc=exemplo,dc=com,dc=br)
+
+* Fri Jun 01 2007 Adam Williamson <awilliamson@mandriva.org> 47-1mdv2008.0
++ Revision: 33543
+- fix patch40 and remove the perl workaround
+- remove part of patch45 (not needed)
+- remove two patches merged upstream
+- new release 47, rebuild for new era
+
+  + Andreas Hasenack <andreas@mandriva.com>
+    - use mkrel
+    - allow to run tools from any directory
+
+
+* Fri Aug 12 2005 Buchan Milne <bgmilne@linux-mandrake.com> 45-1mdk
+- split off from openldap packages
 
