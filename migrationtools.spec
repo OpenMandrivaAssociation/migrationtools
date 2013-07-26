@@ -14,7 +14,6 @@ Patch40:	MigrationTools-47-instdir.patch
 Patch41:	MigrationTools-36-mktemp.patch
 Patch42:	MigrationTools-47-simple.patch
 Patch43:	MigrationTools-47-suffix.patch
-Patch44:	MigrationTools-24-schema.patch
 Patch45:	MigrationTools-45-i18n.patch
 # http://bugzilla.padl.com/show_bug.cgi?id=236
 Patch46:	MigrationTools-47-dc.patch
