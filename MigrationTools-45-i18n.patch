@@ -1,6 +1,6 @@
-diff -ur openldap-2.1.25/MigrationTools-45-noi18n/migrate_all_nis_offline.sh openldap-2.1.25/MigrationTools-45/migrate_all_nis_offline.sh
---- openldap-2.1.25/MigrationTools-45-noi18n/migrate_all_nis_offline.sh	2004-01-25 16:02:25.000000000 +0200
-+++ openldap-2.1.25/MigrationTools-45/migrate_all_nis_offline.sh	2004-01-25 16:03:53.000000000 +0200
+diff -ur MigrationTools-45-noi18n/migrate_all_nis_offline.sh MigrationTools-45/migrate_all_nis_offline.sh
+--- MigrationTools-45-noi18n/migrate_all_nis_offline.sh	2004-01-25 16:02:25.000000000 +0200
++++ MigrationTools-45/migrate_all_nis_offline.sh	2004-01-25 16:03:53.000000000 +0200
 @@ -66,7 +66,7 @@
  ypcat $DOMFLAG services > $ETC_SERVICES
  ypcat $DOMFLAG protocols > $ETC_PROTOCOLS
@@ -10,9 +10,9 @@ diff -ur openldap-2.1.25/MigrationTools-45-noi18n/migrate_all_nis_offline.sh ope
  ypcat $DOMFLAG hosts > $ETC_HOSTS
  ypcat $DOMFLAG networks > $ETC_NETWORKS
  #ypcat $DOMFLAG -k aliases > $ETC_ALIASES
-diff -ur openldap-2.1.25/MigrationTools-45-noi18n/migrate_all_nis_online.sh openldap-2.1.25/MigrationTools-45/migrate_all_nis_online.sh
---- openldap-2.1.25/MigrationTools-45-noi18n/migrate_all_nis_online.sh	2004-01-25 16:02:25.000000000 +0200
-+++ openldap-2.1.25/MigrationTools-45/migrate_all_nis_online.sh	2004-01-25 16:03:53.000000000 +0200
+diff -ur MigrationTools-45-noi18n/migrate_all_nis_online.sh MigrationTools-45/migrate_all_nis_online.sh
+--- MigrationTools-45-noi18n/migrate_all_nis_online.sh	2004-01-25 16:02:25.000000000 +0200
++++ MigrationTools-45/migrate_all_nis_online.sh	2004-01-25 16:03:53.000000000 +0200
 @@ -42,6 +42,7 @@
  
  TMPDIR="/tmp"
@@ -43,9 +43,9 @@ diff -ur openldap-2.1.25/MigrationTools-45-noi18n/migrate_all_nis_online.sh open
  rm -f $ETC_GROUP
  rm -f $ETC_SERVICES
  rm -f $ETC_PROTOCOLS
-diff -ur openldap-2.1.25/MigrationTools-45-noi18n/migrate_all_online.sh openldap-2.1.25/MigrationTools-45/migrate_all_online.sh
---- openldap-2.1.25/MigrationTools-45-noi18n/migrate_all_online.sh	2004-01-25 16:02:25.000000000 +0200
-+++ openldap-2.1.25/MigrationTools-45/migrate_all_online.sh	2004-01-25 16:03:53.000000000 +0200
+diff -ur MigrationTools-45-noi18n/migrate_all_online.sh MigrationTools-45/migrate_all_online.sh
+--- MigrationTools-45-noi18n/migrate_all_online.sh	2004-01-25 16:02:25.000000000 +0200
++++ MigrationTools-45/migrate_all_online.sh	2004-01-25 16:03:53.000000000 +0200
 @@ -57,6 +57,10 @@
  if [ "X$ETC_PASSWD" = "X" ]; then
  	ETC_PASSWD=/etc/passwd
@@ -65,9 +65,9 @@ diff -ur openldap-2.1.25/MigrationTools-45-noi18n/migrate_all_online.sh openldap
  $PERL -I${INSTDIR} ${INSTDIR}migrate_passwd.pl		$ETC_PASSWD >> $DB
  echo "Migrating protocols..."
  $PERL -I${INSTDIR} ${INSTDIR}migrate_protocols.pl	$ETC_PROTOCOLS >> $DB
-diff -ur openldap-2.1.25/MigrationTools-45-noi18n/migrate_automount.pl openldap-2.1.25/MigrationTools-45/migrate_automount.pl
---- openldap-2.1.25/MigrationTools-45-noi18n/migrate_automount.pl	2003-04-15 05:09:33.000000000 +0200
-+++ openldap-2.1.25/MigrationTools-45/migrate_automount.pl	2004-01-25 16:03:53.000000000 +0200
+diff -ur MigrationTools-45-noi18n/migrate_automount.pl MigrationTools-45/migrate_automount.pl
+--- MigrationTools-45-noi18n/migrate_automount.pl	2003-04-15 05:09:33.000000000 +0200
++++ MigrationTools-45/migrate_automount.pl	2004-01-25 16:03:53.000000000 +0200
 @@ -33,9 +33,9 @@
  # services migration tool
  #
@@ -105,9 +105,9 @@ diff -ur openldap-2.1.25/MigrationTools-45-noi18n/migrate_automount.pl openldap-
  if (OUTFILE != STDOUT) { close(OUTFILE); }
  
 +
-diff -ur openldap-2.1.25/MigrationTools-45-noi18n/migrate_passwd.pl openldap-2.1.25/MigrationTools-45/migrate_passwd.pl
---- openldap-2.1.25/MigrationTools-45-noi18n/migrate_passwd.pl	2003-04-15 05:09:34.000000000 +0200
-+++ openldap-2.1.25/MigrationTools-45/migrate_passwd.pl	2004-01-25 16:04:07.000000000 +0200
+diff -ur MigrationTools-45-noi18n/migrate_passwd.pl MigrationTools-45/migrate_passwd.pl
+--- MigrationTools-45-noi18n/migrate_passwd.pl	2003-04-15 05:09:34.000000000 +0200
++++ MigrationTools-45/migrate_passwd.pl	2004-01-25 16:04:07.000000000 +0200
 @@ -37,6 +37,7 @@
  # Thanks to Peter Jacob Slot <peter@vision.auk.dk>.
  #
