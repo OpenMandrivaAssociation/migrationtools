@@ -3,7 +3,7 @@
 Summary:	Tools for migrating local/NIS account information to LDAP
 Name:		migrationtools
 Version:	47
-Release:	17
+Release:	18
 License:	BSD-like
 Group:		System/Configuration/Other
 Url:		http://www.padl.com/OSS/MigrationTools.html
