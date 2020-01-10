@@ -41,7 +41,7 @@ LDAP_BINDCRED	The password to bind to the LDAP server with, for online
 
 %prep
 %setup -qn %{real_name}-%{version}
-%apply_patches
+%autopatch -p1
 cp %{SOURCE3} .
 
 %build
