@@ -6,7 +6,7 @@ Version:	47
 Release:	21
 License:	BSD-like
 Group:		System/Configuration/Other
-Url:		http://www.padl.com/OSS/MigrationTools.html
+Url:		https://www.padl.com/OSS/MigrationTools.html
 Source0:	http://www.padl.com/download/%{real_name}-%{version}.tar.bz2
 Source3:	migration-tools.txt
 Source4:	migrate_automount.pl
