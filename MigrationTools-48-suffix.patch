@@ -1,0 +1,74 @@
+--- a/migrate_common.sh	2026-08-02 22:30:51.240746056 +0200
++++ b/migrate_common.sh	2026-08-02 22:30:51.261390534 +0200
+@@ -401,6 +401,62 @@
+ 	echo "Done."
+ }
+ 
++
++on_add_suffix () {
++	# Try to add the top-level object, because it's usually missing.
++	[ -z "$LDAP_BASEDN" ] && return 0
++	TYPE=`echo "$LDAP_BASEDN" | cut -f1 -d=`
++	TOP=`echo "$LDAP_BASEDN" | cut -f1 -d, | cut -f2 -d=`
++	CLASS=$TYPE
++	if [ "$CLASS" = "dc" ] ; then
++		CLASS=domain
++	elif [ "$CLASS" = "o" ] ; then
++		CLASS=organization
++	elif [ "$CLASS" = "l" ] ; then
++		CLASS=locality
++	elif [ "$CLASS" = "c" ] ; then
++		CLASS=country
++	elif [ "$CLASS" = "nismapname" ] ; then
++		CLASS=nisMap
++	elif [ "$CLASS" = "cn" ] ; then
++		CLASS=container
++	fi
++
++	case $LDAPADD in
++		*'ldapadd'*)
++		[ "$ldap_uri" = 1 ] && ldaphostcmd="-H $LDAPHOST" || ldaphostcmd="-h $LDAPHOST"
++		ldapcmd="$LDAPADD $ldaphostcmd"
++		if [ "x$SASL_MECH" != 'x' ]; then
++			ldapendcmd="-Y $SASL_MECH"
++		else
++			ldapendcmd="-x"
++		fi
++		if [ "x$SASL_MECH" != 'xEXTERNAL' ] && [ "x$LDAP_BINDCRED" = 'x' ]; then
++			$ldapcmd -D "$LDAP_BINDDN" $ldapendcmd << EOF || true
++dn: $LDAP_BASEDN
++$TYPE: $TOP
++objectClass: top
++objectClass: $CLASS
++EOF
++		elif [ "x$SASL_MECH" != 'xEXTERNAL' ]; then
++			$ldapcmd -D "$LDAP_BINDDN" -w "$LDAP_BINDCRED" $ldapendcmd << EOF || true
++dn: $LDAP_BASEDN
++$TYPE: $TOP
++objectClass: top
++objectClass: $CLASS
++EOF
++		else
++			$ldapcmd $ldapendcmd << EOF || true
++dn: $LDAP_BASEDN
++$TYPE: $TOP
++objectClass: top
++objectClass: $CLASS
++EOF
++		fi
++		;;
++	esac
++}
++
+ on_update () {
+ 	case $LDAPADD in
+ 		*'ldapadd'*)
+@@ -505,6 +561,8 @@
+ 	on_questions
+ 	# Migrate data
+ 	on_all_mig
++	# Ensure base DN exists
++	on_add_suffix
+ 	# Bump data
+ 	on_update
+ }

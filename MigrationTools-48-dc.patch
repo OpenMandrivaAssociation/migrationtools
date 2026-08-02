@@ -1,0 +1,19 @@
+--- a/migrate_base.pl	2020-07-10 21:52:06.000000000 +0200
++++ b/migrate_base.pl	2026-08-02 22:31:12.184400918 +0200
+@@ -58,14 +58,8 @@
+ sub gen_suffix
+ {
+ 	@dn_components = split(/,/, $DEFAULT_BASE);
+-	if ($#dn_components == 0) {
+-		$dnloc = 0;
+-		&base_ldif;
+-	} else {
+-		for ($dnloc = ($#dn_components-1); $dnloc >= 0; $dnloc--) {
+-			&base_ldif;
+-		}
+-	}
++	$dnloc = 0;
++	&base_ldif;
+ }
+ 
+ sub base_ldif

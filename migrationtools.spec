@@ -2,21 +2,21 @@
 
 Summary:	Tools for migrating local/NIS account information to LDAP
 Name:		migrationtools
-Version:	47
-Release:	21
+Version:	48
+Release:	1
 License:	BSD-like
 Group:		System/Configuration/Other
 Url:		https://www.padl.com/OSS/MigrationTools.html
 Source0:	http://www.padl.com/download/%{real_name}-%{version}.tar.bz2
 Source3:	migration-tools.txt
 Source4:	migrate_automount.pl
-Patch40:	MigrationTools-47-instdir.patch
+Patch40:	MigrationTools-48-instdir.patch
 Patch41:	MigrationTools-36-mktemp.patch
-Patch42:	MigrationTools-47-simple.patch
-Patch43:	MigrationTools-47-suffix.patch
+Patch42:	MigrationTools-48-simple.patch
+Patch43:	MigrationTools-48-suffix.patch
 Patch45:	MigrationTools-45-i18n.patch
 # http://bugzilla.padl.com/show_bug.cgi?id=236
-Patch46:	MigrationTools-47-dc.patch
+Patch46:	MigrationTools-48-dc.patch
 Buildarch:	noarch
 Provides:	%{real_name} = %{version}-%{release}
 Requires:	openldap-clients
@@ -40,7 +40,7 @@ LDAP_BINDCRED	The password to bind to the LDAP server with, for online
 		migration.
 
 %prep
-%setup -qn %{real_name}-%{version}
+%setup -qn migrationtools-upstream-%{version}
 %autopatch -p1
 cp %{SOURCE3} .
 
@@ -55,5 +55,5 @@ install -m 755 %{SOURCE4} %{buildroot}%{_datadir}/%{name}
 
 %files
 %{_datadir}/%{name}
-%doc README migration-tools.txt
+%doc README.md migration-tools.txt
 

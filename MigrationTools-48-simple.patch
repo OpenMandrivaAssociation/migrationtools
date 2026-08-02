@@ -1,0 +1,44 @@
+--- a/migrate_common.sh	2026-08-02 22:30:51.218156724 +0200
++++ b/migrate_common.sh	2026-08-02 22:30:51.240746056 +0200
+@@ -102,6 +102,8 @@
+ 			exit 1
+ 		esac
+ 	done
++	shift $((OPTIND - 1))
++	EXTRA_ARGS="$@"
+ }
+ 
+ on_getopts () {
+@@ -131,6 +133,8 @@
+ 			exit 1
+ 		esac
+ 	done
++	shift $((OPTIND - 1))
++	EXTRA_ARGS="$@"
+ }
+ 
+ readldapconf () {
+@@ -378,9 +382,9 @@
+ 
+ of_update () {
+ 	if [ "X$SLAPADD" = "X" ]; then
+-		$LDIF2LDBM -i $DB
++		$LDIF2LDBM -i $DB $EXTRA_ARGS
+ 	else
+-		$SLAPADD -l $DB
++		$SLAPADD -l $DB $EXTRA_ARGS
+ 	fi
+ 	EXITCODE=$?
+ 
+@@ -403,9 +407,9 @@
+ 		[ $ldap_uri = 1 ] && ldaphostcmd="-H $LDAPHOST" || ldaphostcmd="-h $LDAPHOST"
+ 		ldapcmd="$LDAPADD $ldaphostcmd"
+ 		if [ "x$SASL_MECH" != 'x' ]; then
+-			ldapendcmd="-Y $SASL_MECH -f $DB"
++			ldapendcmd="-Y $SASL_MECH $EXTRA_ARGS -f $DB"
+ 		else
+-			ldapendcmd="-f $DB"
++			ldapendcmd="$EXTRA_ARGS -f $DB"
+ 		fi
+ 		if [ "x$SASL_MECH" != 'xEXTERNAL' ] && [ "x$LDAP_BINDCRED" = 'x' ]; then
+ 			$ldapcmd -D "$LDAP_BINDDN" $ldapendcmd

@@ -1,0 +1,38 @@
+--- a/migrate_all_online.sh	2020-07-10 21:52:06.000000000 +0200
++++ b/migrate_all_online.sh	2026-08-02 22:30:51.166062190 +0200
+@@ -38,6 +38,7 @@
+ 
+ SHELL=/bin/sh
+ export SHELL
++dirname=$(dirname "$0")
+ 
+ # Import
+ if [ -f "$dirname/migrate_common.sh" ]; then
+--- a/migrate_common.sh	2020-07-10 21:52:06.000000000 +0200
++++ b/migrate_common.sh	2026-08-02 22:30:51.189203009 +0200
+@@ -46,6 +46,7 @@
+ # Defaults
+ [ -f "/etc/os-release" ] && . /etc/os-release
+ [ -z "$dirname" ] && dirname=$(dirname "$0")
++[ -z "$INSTDIR" ] && INSTDIR="/usr/share/migrationtools/"
+ [ -z "$MIGRATION_TYPE" ] && MIGRATION_TYPE='full'
+ 
+ perlset () {
+@@ -66,12 +67,14 @@
+ 	spath=$1
+ 	shift
+ 	if [ -f "$dirname/$spath" ]; then
+-		$PERL "$dirname/$spath" $@
++		$PERL -I"$dirname" "$dirname/$spath" $@
++	elif [ -f "${INSTDIR%/}/$spath" ]; then
++		$PERL -I"${INSTDIR%/}" "${INSTDIR%/}/$spath" $@
+ 	elif [ -f "$spath" ]; then
+-		$PERL "$spath" $@
++		$PERL -I"$(dirname "$spath")" "$spath" $@
+ 	else
+ 		ppath=$(which "$spath")
+-		[ "x$ppath" != 'x' ] && $PERL "$ppath" $@
++		[ "x$ppath" != 'x' ] && $PERL -I"$(dirname "$ppath")" "$ppath" $@
+ 	fi
+ 	return $?
+ }
